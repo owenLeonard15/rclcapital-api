@@ -6,10 +6,8 @@ const knex = require('knex')
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'owen',
-      password : 'Otrain15$',
-      database : 'rcl'
+      connectionString : process.env.DATABASE_URL,
+      ssl: true
     }
 });
 
@@ -21,6 +19,7 @@ app.use(cors());
 app.get('/', (req,res) =>{res.send('it is working!')});
 
 app.post('/contact', (req,res) =>{
+    console.log('this should be happening!');
     const {name, email} = req.body;
     db('submissions')
     .returning('*')
