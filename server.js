@@ -20,10 +20,6 @@ app.use(cors());
 
 
 
-app.get('/', (req,res) =>{
-    res.send(database.submissions);
-})
-
 app.post('/contact', (req,res) =>{
     const {name, email} = req.body;
     db('submissions').returning('*')
@@ -36,6 +32,6 @@ app.post('/contact', (req,res) =>{
     .catch(err => res.status(400).json('did not receive submission'));
 })
 
-app.listen(3000, () =>{
-    console.log('app is running on port 3000');
+app.listen(process.env.port || 3000, () =>{
+    console.log(`app is running on port ${process.env.PORT}`);
 })
