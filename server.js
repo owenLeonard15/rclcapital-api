@@ -19,7 +19,6 @@ app.use(cors());
 app.get('/', (req,res) =>{res.send('it is working!')});
 
 app.post('/contact', (req,res) =>{
-    console.log('this should be happening!');
     const {name, email} = req.body;
     db('submissions')
     .returning('*')
