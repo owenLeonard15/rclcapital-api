@@ -21,7 +21,7 @@ app.get('/', (req,res) =>{res.send('it is working!')});
 app.post('/contact', (req,res) =>{
     const {name, email} = req.body;
     console.log({name, email});
-    db('*').insert({
+    db('submissions').insert({
         name: name,
         email: email,
         submitted: new Date()
