@@ -22,14 +22,15 @@ app.get('/', (req,res) =>{res.send('it is working!')});
 
 app.post('/contact', (req,res) =>{
     const {name, email} = req.body;
-    db('submissions').returning('*')
+    db('submissions')
+    .returning('*')
     .insert({
         name: name,
         email: email,
         submitted: new Date()
     })
     .then(response => res.json(response))
-    .catch(err => res.status(400).json('did not receive submission'));
+    .catch(err => res.status(400).json('unable to enter into db'));
 })
 
 app.listen(process.env.PORT || 3000, () =>{
